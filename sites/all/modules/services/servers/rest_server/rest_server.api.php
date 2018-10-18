@@ -17,8 +17,9 @@
  *  An associative array of parser callbacks keyed by mime-type.
  * @return void
  */
-function hook_rest_server_request_parsers_alter(&$parsers) {
-  unset($parsers['application/x-www-form-urlencoded']);
+function hook_rest_server_request_parsers_alter(&$parsers)
+{
+    unset($parsers['application/x-www-form-urlencoded']);
 }
 
 /**
@@ -31,9 +32,10 @@ function hook_rest_server_request_parsers_alter(&$parsers) {
  *  and is responsible for encoding the output.
  * @return void
  */
-function hook_rest_server_response_formatters_alter(&$formatters) {
-  // Remove the jsonp response format.
-  unset($formatters['jsonp']);
+function hook_rest_server_response_formatters_alter(&$formatters)
+{
+    // Remove the jsonp response format.
+    unset($formatters['jsonp']);
 }
 
 /**
@@ -50,11 +52,12 @@ function hook_rest_server_response_formatters_alter(&$formatters) {
  * @param type $arguments
  *  Arguments of the controller.
  */
-function hook_rest_server_execute_errors_alter(&$error, $controller, $arguments) {
-  $error_code = $error['code'];
-  if (user_is_logged_in() && $error_code == 401) {
-    global $user;
-    $error['header_message'] = '403 ' . t('Access denied for user @user',
-      array('@user' => $user->name));
-  }
+function hook_rest_server_execute_errors_alter(&$error, $controller, $arguments)
+{
+    $error_code = $error['code'];
+    if (user_is_logged_in() && $error_code == 401) {
+        global $user;
+        $error['header_message'] = '403 ' . t('Access denied for user @user',
+            array('@user' => $user->name));
+    }
 }

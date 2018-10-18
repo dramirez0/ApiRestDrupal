@@ -17,22 +17,23 @@
  *  The current settings.
  * @return void
  */
-function _rest_server_settings(&$form, $endpoint, $settings) {
-  $settings = rest_server_setup_settings($settings);
+function _rest_server_settings(&$form, $endpoint, $settings)
+{
+    $settings = rest_server_setup_settings($settings);
 
-  $form['formatters'] = array(
-    '#type'          => 'checkboxes',
-    '#title'         => t('Response formatters'),
-    '#required'      => TRUE,
-    '#description'   => t('Select the response formats you want to enable for the rest server.'),
-  ) + _rest_server_settings_checkboxes_attributes($settings['formatters']);
+    $form['formatters'] = array(
+        '#type' => 'checkboxes',
+        '#title' => t('Response formatters'),
+        '#required' => true,
+        '#description' => t('Select the response formats you want to enable for the rest server.'),
+    ) + _rest_server_settings_checkboxes_attributes($settings['formatters']);
 
-  $form['parsers'] = array(
-    '#type'          => 'checkboxes',
-    '#title'         => t('Request parsing'),
-    '#required'      => TRUE,
-    '#description'   => t('Select the request parser types you want to enable for the rest server.'),
-  ) + _rest_server_settings_checkboxes_attributes($settings['parsers']);
+    $form['parsers'] = array(
+        '#type' => 'checkboxes',
+        '#title' => t('Request parsing'),
+        '#required' => true,
+        '#description' => t('Select the request parser types you want to enable for the rest server.'),
+    ) + _rest_server_settings_checkboxes_attributes($settings['parsers']);
 }
 
 /**
@@ -42,20 +43,21 @@ function _rest_server_settings(&$form, $endpoint, $settings) {
  * @param array $settings
  * @return array
  */
-function _rest_server_settings_checkboxes_attributes($settings) {
-  $keys = array_keys($settings);
-  $options = array_combine($keys, $keys);
-  $default = array();
-  foreach ($settings as $key => $enabled) {
-    if ($enabled) {
-      $default[] = $key;
+function _rest_server_settings_checkboxes_attributes($settings)
+{
+    $keys = array_keys($settings);
+    $options = array_combine($keys, $keys);
+    $default = array();
+    foreach ($settings as $key => $enabled) {
+        if ($enabled) {
+            $default[] = $key;
+        }
     }
-  }
-  ksort($options);
-  return array(
-    '#options' => $options,
-    '#default_value' => $default,
-  );
+    ksort($options);
+    return array(
+        '#options' => $options,
+        '#default_value' => $default,
+    );
 }
 
 /**
@@ -68,10 +70,11 @@ function _rest_server_settings_checkboxes_attributes($settings) {
  * @return array
  *  The settings for the REST server in this endpoint.
  */
-function _rest_server_settings_submit($endpoint, &$values) {
-  $values['formatters'] = array_map('_rest_server_settings_not_zero', $values['formatters']);
-  $values['parsers'] = array_map('_rest_server_settings_not_zero', $values['parsers']);
-  return $values;
+function _rest_server_settings_submit($endpoint, &$values)
+{
+    $values['formatters'] = array_map('_rest_server_settings_not_zero', $values['formatters']);
+    $values['parsers'] = array_map('_rest_server_settings_not_zero', $values['parsers']);
+    return $values;
 }
 
 /**
@@ -83,6 +86,7 @@ function _rest_server_settings_submit($endpoint, &$values) {
  * @return bool
  *  FALSE if the $value is === 0 otherwise TRUE is returned.
  */
-function _rest_server_settings_not_zero($value) {
-  return $value !== 0;
+function _rest_server_settings_not_zero($value)
+{
+    return $value !== 0;
 }
