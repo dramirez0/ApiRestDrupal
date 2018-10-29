@@ -37,3 +37,14 @@
     }
   };
 })(jQuery);
+
+$(document).ready(function(){
+ var a = 99;
+ var c = 102;
+
+ var operacion= a+c*a;
+
+ console.log(operacion);
+
+ exit();
+});
