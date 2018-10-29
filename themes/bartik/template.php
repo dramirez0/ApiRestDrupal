@@ -143,9 +143,9 @@ function bartik_field__taxonomy_term_reference($variables) {
   }
 
   // Render the items.
-  $output .= ($variables['element']['#label_display'] == 'inline') ? '<ul class="links inline">' : '<ul class="links">';
+  $output .= ($variables['element']['#label_display'] == 'inline') ? '<ul class="links inline" style="display:block; text-transform:capitalize; color:#fff; text-decoration:none;">' : '<ul class="links">';
   foreach ($variables['items'] as $delta => $item) {
-    $output .= '<li class="taxonomy-term-reference-' . $delta . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</li>';
+    $output .= '<li class="taxonomy-term-reference-' . $delta . '"' . $variables['item_attributes'][$delta] . 'style="display:block; text-transform:capitalize; color:#fff; text-decoration:none;">' . drupal_render($item) . '</li>';
   }
   $output .= '</ul>';
 
