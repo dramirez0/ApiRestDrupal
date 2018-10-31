@@ -5,6 +5,9 @@ body,
 body.overlay {
   color: #3b3b3b;
 }
+body.convert {
+  color: #3b3b3b;
+}
 .comment .comment-arrow {
   border-color: #ffffff;
 }
