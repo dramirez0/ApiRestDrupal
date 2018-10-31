@@ -11,6 +11,11 @@
   margin: 0;
 }
 
+.form-managed-files .forms-submits .li {
+  margin: 0;
+  display: none;
+}
+
 .form-managed-file input.progress-disabled {
   float: none;
   display: inline;
